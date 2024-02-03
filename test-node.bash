@@ -2,7 +2,7 @@
 
 set -e
 
-NITRO_NODE_VERSION=offchainlabs/nitro-node:v2.1.1-e9d8842-dev
+NITRO_NODE_VERSION=asia-docker.pkg.dev/lumit-399702/asia.gcr.io/nitro-dev:f2c81088c6b275fcf05194cced3189d944caa6c6
 BLOCKSCOUT_VERSION=offchainlabs/blockscout:v1.0.0-c8db5b1
 
 mydir=`dirname $0`
@@ -42,7 +42,7 @@ dev_build_nitro=false
 dev_build_blockscout=false
 batchposters=1
 devprivkey=b6b15c8cb491557369f3c7d2c287b053eb229daa9c22138887752191c9520659
-l1chainid=1337
+l1chainid=1337 
 while [[ $# -gt 0 ]]; do
     case $1 in
         --init)
@@ -228,7 +228,7 @@ fi
 if $dev_build_nitro; then
   docker tag nitro-node-dev:latest nitro-node-dev-testnode
 else
-  docker pull $NITRO_NODE_VERSION
+  docker pull --platform linux/x86_64 $NITRO_NODE_VERSION
   docker tag $NITRO_NODE_VERSION nitro-node-dev-testnode
 fi
 
